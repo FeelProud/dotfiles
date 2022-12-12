@@ -38,7 +38,8 @@ apt -y install xorg i3 i3blocks
 # install softwares
 apt -y install feh compton numlockx volumeicon-alsa maim scrot xclip curl wget light pulseaudio rxvt-unicode ffmpeg \
 imagemagick xserver-xorg-input-synaptics xdotool libncurses5-dev git make xdg-utils pkg-config \
-build-essential gcc-multilib vim pavucontrol lxappearance ncdu python3 python3-pip
+build-essential gcc-multilib vim pavucontrol lxappearance ncdu python3 python3-pip vlc discord
+add-apt-repository ppa:solaar-unifying/stable -y && sudo apt update && sudo apt install solaar -y
 apt -y install python-is-python3 python2 htop neofetch xinput gsettings-desktop-schemas nemo rsync \
 rofi notepadqq libnotify-bin playerctl mpv hexchat qbittorrent bat ntfs-3g gem libaio1
 apt -y install fuse
@@ -121,19 +122,13 @@ install ./cutter /usr/bin/cutter
 rm ./cutter
 
 # metasploit
-apt -y install postgresql postgresql-contrib
-curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb > msfinstall
-chmod +x msfinstall
-./msfinstall
-rm ./msfinstall
+snap install metasploit-framework
 
 # Python 3 libs
 python3 -m pip install Flask pwntools numpy pytesseract beautifulsoup4 pandas Pillow Scrapy asyncio pysqlite3 pipenv sagemath
 
 # Postman
-wget https://dl.pstmn.io/download/latest/linux64 -O /opt/postman.tar.gz
-tar -xvf /opt/postman.tar.gz -C /opt/
-rm /opt/postman.tar.gz
+snap install postman
 
 # radare2
 git clone https://github.com/radare/radare2 /opt/radare2
@@ -145,6 +140,18 @@ cd $(pwd)
 # other
 echo "wireshark-common wireshark-common/install-setuid boolean true" | debconf-set-selections
 apt -y install checksec wireshark gobuster nmap exiftool binwalk foremost audacity ghex dbeaver
+
+
+echo ""
+echo "--------------------------------------------------"
+echo "          - Installing DevOps tools -"
+echo "--------------------------------------------------"
+echo ""
+
+# Vagrant
+snap install vagrant --classic
+
+# ASDF
 
 echo ""
 echo "--------------------------------------------------"
