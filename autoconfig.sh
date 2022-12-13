@@ -62,7 +62,7 @@ apt -y install i3 i3blocks
 ## install multiple
 apt -y install feh compton numlockx volumeicon-alsa maim scrot xclip curl wget light pulseaudio rxvt-unicode ffmpeg \
 imagemagick xserver-xorg-input-synaptics xdotool libncurses5-dev git make xdg-utils pkg-config \
-build-essential gcc-multilib vim pavucontrol lxappearance ncdu python3 python3-pip nvidia-cuda-toolkit
+build-essential gcc-multilib vim pavucontrol lxappearance ncdu python3 python3-pip
 
 apt -y install python-is-python3 python2 htop neofetch xinput gsettings-desktop-schemas nemo rsync \
 rofi libnotify-bin playerctl mpv hexchat bat ntfs-3g gem libaio1
