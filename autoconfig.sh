@@ -57,22 +57,28 @@ apt -y install $target_term
 # install base dependenciese
 apt -y install i3 i3blocks
 
-# install softwares
+# install multiple
+apt -y install feh compton numlockx volumeicon-alsa maim scrot xclip curl wget light pulseaudio rxvt-unicode ffmpeg ncdu \
+imagemagick xdotool libncurses5-dev git make xdg-utils pkg-config build-essential gcc-multilib vim pavucontrol lxappearance \
+htop neofetch xinput gsettings-desktop-schemas nemo rsync rofi libnotify-bin playerctl mpv hexchat bat ntfs-3g gem libaio1
 
-## install multiple
-apt -y install feh compton numlockx volumeicon-alsa maim scrot xclip curl wget light pulseaudio rxvt-unicode ffmpeg \
-imagemagick xserver-xorg-input-synaptics xdotool libncurses5-dev git make xdg-utils pkg-config \
-build-essential gcc-multilib vim pavucontrol lxappearance ncdu python3 python3-pip
+chmod +s /usr/bin/light
 
-apt -y install python-is-python3 python2 htop neofetch xinput gsettings-desktop-schemas nemo rsync \
-rofi libnotify-bin playerctl mpv hexchat bat ntfs-3g gem libaio1
+# install python and depedencies
+apt -y install python2 python3 python3-pip
+apt -y install python-is-python3
 
-apt -y install fuse
-
-apt -y vlc discord qbittorrent notepadqq
-
-## install solaar for logitech mouse
+# install solaar for logitech mouse
 add-apt-repository ppa:solaar-unifying/stable -y && sudo apt update && sudo apt install solaar -y
+
+echo ""
+echo "--------------------------------------------------"
+echo "           - Installing main apps -"
+echo "--------------------------------------------------"
+echo ""
+
+## insf
+apt -y vlc discord qbittorrent notepadqq
 
 ## install visual studio code
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
@@ -82,35 +88,13 @@ sudo apt install apt-transport-https
 sudo apt update
 sudo apt install code
 
-# config light suid
-
-chmod +s /usr/bin/light
-
 echo ""
 echo "--------------------------------------------------"
 echo "              - Installing i3 Gaps -"
 echo "--------------------------------------------------"
 echo ""
 
-apt -y install i3 i3blocks meson libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
-libxcb-util0-dev libxcb-icccm4-dev libyajl-dev \
-libstartup-notification0-dev libxcb-randr0-dev \
-libev-dev libxcb-cursor-dev libxcb-xinerama0-dev \
-libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev \
-autoconf libxcb-xrm0 libxcb-xrm-dev automake libxcb-shape0-dev
-
-git clone https://www.github.com/Airblader/i3 && cd i3
-mkdir -p build && cd build
-meson ..
-ninja
-install ./i3 /bin/i3
-cd ../..
-rm -rf i3
-
-apt -y remove meson libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb1-dev \
-libxcb-icccm4-dev libyajl-dev libev-dev libxcb-xkb-dev libxcb-cursor-dev \
-libxkbcommon-dev libxcb-xinerama0-dev libxkbcommon-x11-dev \
-libstartup-notification0-dev libxcb-randr0-dev libxcb-xrm-dev libxcb-shape0-dev
+# TO DO
 
 echo ""
 echo "--------------------------------------------------"
