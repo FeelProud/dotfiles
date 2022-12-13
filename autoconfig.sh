@@ -36,19 +36,43 @@ apt -y install $target_term
 apt -y install xorg i3 i3blocks
 
 # install softwares
+
+## install multiple
 apt -y install feh compton numlockx volumeicon-alsa maim scrot xclip curl wget light pulseaudio rxvt-unicode ffmpeg \
 imagemagick xserver-xorg-input-synaptics xdotool libncurses5-dev git make xdg-utils pkg-config \
-build-essential gcc-multilib vim pavucontrol lxappearance ncdu python3 python3-pip vlc discord
-add-apt-repository ppa:solaar-unifying/stable -y && sudo apt update && sudo apt install solaar -y
+build-essential gcc-multilib vim pavucontrol lxappearance ncdu python3 python3-pip nvidia-cuda-toolkit
+
 apt -y install python-is-python3 python2 htop neofetch xinput gsettings-desktop-schemas nemo rsync \
-rofi notepadqq libnotify-bin playerctl mpv hexchat qbittorrent bat ntfs-3g gem libaio1
+rofi libnotify-bin playerctl mpv hexchat bat ntfs-3g gem libaio1
+
 apt -y install fuse
+
+apt -y vlc discord qbittorrent notepadqq
+
+## install solaar for logitech mouse
+add-apt-repository ppa:solaar-unifying/stable -y && sudo apt update && sudo apt install solaar -y
+
+## install visual studio code
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/
+sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+sudo apt install apt-transport-https
+sudo apt update
+sudo apt install code
+
+echo ""
+echo "--------------------------------------------------"
+echo "           - Installing GPU drivers -"
+echo "--------------------------------------------------"
+echo ""
+
+apt -y nvidia-cuda-toolkit
 
 # config light suid
 
 chmod +s /usr/bin/light
 
-# i3 rounded corners
+# i3 rounded cornerssh
 
 echo ""
 echo "--------------------------------------------------"
@@ -121,6 +145,13 @@ chmod +x ./cutter
 install ./cutter /usr/bin/cutter
 rm ./cutter
 
+# radare2
+git clone https://github.com/radare/radare2 /opt/radare2
+chmod 777 -R /opt/radare2/
+old_path=$(pwd)
+cd /opt/radare2/ && ./sys/install.sh
+cd $(pwd)
+
 # metasploit
 snap install metasploit-framework
 
@@ -130,12 +161,8 @@ python3 -m pip install Flask pwntools numpy pytesseract beautifulsoup4 pandas Pi
 # Postman
 snap install postman
 
-# radare2
-git clone https://github.com/radare/radare2 /opt/radare2
-chmod 777 -R /opt/radare2/
-old_path=$(pwd)
-cd /opt/radare2/ && ./sys/install.sh
-cd $(pwd)
+# hashcat GPU
+apt -y install hashcat-nvidia
 
 # other
 echo "wireshark-common wireshark-common/install-setuid boolean true" | debconf-set-selections
