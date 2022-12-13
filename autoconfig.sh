@@ -175,6 +175,10 @@ echo ""
 snap install vagrant --classic
 
 # ASDF
+apt install curl git
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.10.2
+echo '. $HOME/.asdf/asdf.sh' >> ~/.bashrc
+echo '. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
 
 echo ""
 echo "--------------------------------------------------"
@@ -207,23 +211,11 @@ cp -ar usr/. /usr/
 # change PS1
 echo "PS1='\t ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" >> /home/$target_user/.bashrc
 
-# create git config
-touch /home/$target_user/.gitconfig
-chown $target_user: /home/$target_user/.gitconfig
-chmod 664 /home/$target_user/.gitconfig
-echo "[user]" >> /home/$target_user/.gitconfig
-echo -e "\temail = feelproud@protonmail.com" >> /home/$target_user/.gitconfig
-echo -e "\tname = FeelProud" >> /home/$target_user/.gitconfig
-
 # set Brave as default x web browser
 xdg-mime default $target_browser.desktop x-scheme-handler/http
 
 # set nemo "open in terminal context menu"
 ln -fs $(which $target_term) /etc/alternatives/x-terminal-emulator
-
-#CURRENTDIR=$(pwd)
-#cd ..
-#rm -r $CURRENTDIR
 
 apt -y autoremove
 
