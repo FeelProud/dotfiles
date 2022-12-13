@@ -69,7 +69,7 @@ apt -y install python2 python3 python3-pip
 apt -y install python-is-python3
 
 # install solaar for logitech mouse
-add-apt-repository ppa:solaar-unifying/stable -y && sudo apt update && sudo apt install solaar -y
+add-apt-repository ppa:solaar-unifying/stable -y && apt update && apt install solaar -y
 
 echo ""
 echo "--------------------------------------------------"
