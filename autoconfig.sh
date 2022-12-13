@@ -82,19 +82,9 @@ sudo apt install apt-transport-https
 sudo apt update
 sudo apt install code
 
-echo ""
-echo "--------------------------------------------------"
-echo "           - Installing GPU drivers -"
-echo "--------------------------------------------------"
-echo ""
-
-apt -y nvidia-cuda-toolkit
-
 # config light suid
 
 chmod +s /usr/bin/light
-
-# i3 rounded cornerssh
 
 echo ""
 echo "--------------------------------------------------"
