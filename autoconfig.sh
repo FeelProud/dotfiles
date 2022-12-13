@@ -78,7 +78,7 @@ echo "--------------------------------------------------"
 echo ""
 
 # multiple installs
-apt -y vlc qbittorrent notepadqq
+apt -y install vlc qbittorrent notepadqq
 
 # install discord
 wget -O ~/discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
