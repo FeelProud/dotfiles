@@ -60,7 +60,7 @@ apt -y install i3 i3blocks
 # install multiple
 apt -y install feh compton numlockx volumeicon-alsa maim scrot xclip curl wget light pulseaudio rxvt-unicode ffmpeg ncdu \
 imagemagick xdotool libncurses5-dev git make xdg-utils pkg-config build-essential gcc-multilib vim pavucontrol lxappearance \
-htop neofetch xinput gsettings-desktop-schemas nemo rsync rofi libnotify-bin playerctl mpv hexchat bat ntfs-3g gem libaio1
+htop neofetch xinput gsettings-desktop-schemas nemo rsync rofi libnotify-bin playerctl mpv hexchat bat ntfs-3g gem libaio1 gdebi-core
 
 chmod +s /usr/bin/light
 
@@ -77,10 +77,14 @@ echo "           - Installing main apps -"
 echo "--------------------------------------------------"
 echo ""
 
-## insf
-apt -y vlc discord qbittorrent notepadqq
+# multiple installs
+apt -y vlc qbittorrent notepadqq
 
-## install visual studio code
+# install discord
+wget -O ~/discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
+gdebi ~/discord.deb
+
+# install visual studio code
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 sudo install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/
 sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
