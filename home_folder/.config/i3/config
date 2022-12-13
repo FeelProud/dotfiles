@@ -201,3 +201,82 @@ bar {
   status_command i3blocks
 }
 
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Sreen brightness controls
+#bindsym XF86MonBrightnessUp exec ~/sc/brightness.sh +7 # increase screen brightness
+#bindsym XF86MonBrightnessDown exec ~/sc/brightness.sh -7 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec light -A 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec light -U 10 # decrease screen brightness
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+
+# set wallpaper
+# exec_always --no-startup-id feh --bg-fill ~/.config/i3/background.png
+exec_always --no-startup-id ~/sc/randwall.sh
+
+# start pulseaudio
+# exec --no-startup-id pulseaudio --start
+
+# transparency
+exec --no-startup-id compton &
+
+# numlock on
+exec --no-startup-id numlockx on
+
+# exec --no-startup-id compton --config ~/.config/compton/compton.conf -b
+# backup screenshots
+exec --no-startup-id mkdir -p ~/screens/
+exec --no-startup-id mv ~/*.png ~/screens/
+# start (cool) welcome terminal
+# exec --no-startup-id ~/sc/intro.sh
+# rxvt-unicode
+exec_always --no-startup-id xrdb ~/.Xresources
+# exec --no-startup-id rxvt-unicode
+
+# set chrome as default web browser
+exec --no-startup-id xdg-settings set default-web-browser brave.desktop
+
+hide_edge_borders both 
+
+## doesn't work as expected
+# remove G502 mouse acceleration
+# exec --no-startup-id xinput set-prop "Logitech Gaming Mouse G502" "libinput Accel Profile Enabled" 0 0
+#exec_always --no-startup-id xinput set-prop 'Logitech Gaming Mouse G502' 'Coordinate Transformation Matrix' 3.800000, 0.000000, 0.000000, 0.000000, 3.800000, 0.000000, 0.000000, 0.000000, 1.000000
+# add touchpad speed
+# exec --no-startup-id xinput set-prop 16 300 0.7
+exec_always synclient AccelFactor=0
+exec_always synclient TapButton1=1
+exec_always synclient TapButton2=2
+exec_always synclient HorizTwoFingerScroll=1
+exec_always synclient MinSpeed=2.5
+# accept touchpad tapping clic
+# exec --no-startup-id xinput set-prop 16 309 1
+
+# screens
+exec --no-startup-id ~/sc/screen.sh none
+exec --no-startup-id ~/sc/screen.sh
+
+# network manager
+# exec --no-startup-id nm-applet
+
+# volume icon
+exec --no-startup-id volumeicon
+
+# gaps
+gaps inner 10
+
+# border radius
+
+# remove borders
+for_window [class="^.*"] border pixel 0
+
