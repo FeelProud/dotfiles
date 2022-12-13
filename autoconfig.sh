@@ -81,8 +81,9 @@ echo ""
 apt -y install vlc qbittorrent notepadqq
 
 # install discord
-wget -O ~/discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
-gdebi ~/discord.deb
+wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
+gdebi discord.deb
+rm discord.deb
 
 # install visual studio code
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
