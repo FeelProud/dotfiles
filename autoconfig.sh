@@ -77,10 +77,13 @@ echo "           - Installing main apps -"
 echo "--------------------------------------------------"
 echo ""
 
-# multiple installs
-apt -y install vlc qbittorrent notepadqq
+# install Brave
+apt -y install apt-transport-https curl
+curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | tee /etc/apt/sources.list.d/brave-browser-release.list
+apt update && apt -y install brave-browser
 
-# install discord
+# install Discord
 wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
 gdebi discord.deb
 rm discord.deb
@@ -92,6 +95,9 @@ sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gp
 apt install apt-transport-https
 apt update
 apt install code
+
+# multiple installs
+apt -y install vlc qbittorrent notepadqq
 
 echo ""
 echo "--------------------------------------------------"
@@ -122,17 +128,6 @@ rm -rf vimix-icon-theme
 
 sed -i 's/gtk-theme-name=.*/gtk-theme-name=vimix-dark-ruby/g' /home/$target_user/.config/gtk-3.0/settings.ini
 sed -i 's/gtk-icon-theme-name=.*/gtk-icon-theme-name=Vimix-Ruby-dark/g' /home/$target_user/.config/gtk-3.0/settings.ini
-
-echo ""
-echo "--------------------------------------------------"
-echo "          - Installing Brave Browser -"
-echo "--------------------------------------------------"
-echo ""
-
-apt -y install apt-transport-https curl
-curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | tee /etc/apt/sources.list.d/brave-browser-release.list
-apt update && apt -y install brave-browser
 
 echo ""
 echo "--------------------------------------------------"
