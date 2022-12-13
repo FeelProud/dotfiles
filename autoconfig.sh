@@ -27,8 +27,8 @@ echo "      - Installing Nvidia drivers and CUDA -"
 echo "--------------------------------------------------"
 echo ""
 
-apt-get update
-apt-get upgrade
+apt update
+apt upgrade
 
 # Following the doc https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_local
 
@@ -38,8 +38,8 @@ wget https://developer.download.nvidia.com/compute/cuda/12.0.0/local_installers/
 dpkg -i cuda-repo-ubuntu2204-12-0-local_12.0.0-525.60.13-1_amd64.deb
 cp /var/cuda-repo-ubuntu2204-12-0-local/cuda-*-keyring.gpg /usr/share/keyrings/
 
-apt-get update
-apt-get -y install cuda
+apt update
+apt -y install cuda
 
 ln -s /usr/local/cuda-12.0/bin/* /usr/bin
 
