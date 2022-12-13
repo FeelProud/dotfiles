@@ -55,7 +55,7 @@ apt -y upgrade
 apt -y install $target_term
 
 # install base dependenciese
-apt -y install xorg i3 i3blocks
+apt -y install i3 i3blocks
 
 # install softwares
 
