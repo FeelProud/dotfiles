@@ -102,7 +102,7 @@ chmod a+x VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle
 ./VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle
 
 # MULTIPLE (via APT)
-apt -y install vlc qbittorrent notepadqq
+apt -y install vlc deluge notepadqq
 
 echo ""
 echo "--------------------------------------------------"
