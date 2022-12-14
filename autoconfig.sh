@@ -1,18 +1,18 @@
 #!/bin/bash
 
-# check for root
+# ROOT CHECK
 if [ "$EUID" -ne 0 ]
 then
     echo -e "\x1b[1m[\x1b[31m-\x1b[0m] This script must be run as root!"
     exit
 fi
 
-# change this variable to use your own terminal (default is urxvt (rxvt-unicode))
+# VARIABLES
 target_term=lxterminal
 target_user=marc
 target_browser=brave-browser
 
-# intro
+# SCRIPT MAIN BODY
 echo ""
 echo "--------------------------------------------------"
 echo "            - Auto configure script -"
@@ -30,7 +30,7 @@ echo ""
 apt update
 apt upgrade
 
-# Following the doc https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_local
+# DOC: https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_local
 
 wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-ubuntu2204.pin
 mv cuda-ubuntu2204.pin /etc/apt/preferences.d/cuda-repository-pin-600
@@ -49,26 +49,26 @@ echo "           - Installing dependencies -"
 echo "--------------------------------------------------"
 echo ""
 
-# install lxterminal
+# LXTERMINAL
 apt update
 apt -y upgrade
 apt -y install $target_term
 
-# install base dependenciese
+# I3 and I3BLOCKS
 apt -y install i3 i3blocks
 
-# install multiple
+# NULTIPLE DEPEDENCIES
 apt -y install feh compton numlockx volumeicon-alsa maim scrot xclip curl wget light pulseaudio rxvt-unicode ffmpeg ncdu \
 imagemagick xdotool libncurses5-dev git make xdg-utils pkg-config build-essential gcc-multilib vim pavucontrol lxappearance \
 htop neofetch xinput gsettings-desktop-schemas nemo rsync rofi libnotify-bin playerctl mpv hexchat bat ntfs-3g gem libaio1 gdebi-core
 
 chmod +s /usr/bin/light
 
-# install python and depedencies
+# PYTHON(s)
 apt -y install python2 python3 python3-pip
 apt -y install python-is-python3
 
-# install solaar for logitech mouse
+# SOLAAR
 add-apt-repository ppa:solaar-unifying/stable -y && apt update && apt install solaar -y
 
 echo ""
@@ -77,18 +77,18 @@ echo "           - Installing main apps -"
 echo "--------------------------------------------------"
 echo ""
 
-# install Brave
+# BRAVE
 apt -y install apt-transport-https curl
 curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | tee /etc/apt/sources.list.d/brave-browser-release.list
 apt update && apt -y install brave-browser
 
-# install Discord
+# DISCORD
 wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
 gdebi discord.deb
 rm discord.deb
 
-# install visual studio code
+# VISUAL STUDIO CODE
 curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/
 sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
@@ -96,7 +96,12 @@ apt install apt-transport-https
 apt update
 apt install code
 
-# multiple installs
+# VMWARE 17
+wget https://download3.vmware.com/software/WKST-1700-LX/VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle
+chmod a+x VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle
+./VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle
+
+# MULTIPLE (via APT)
 apt -y install vlc qbittorrent notepadqq
 
 echo ""
