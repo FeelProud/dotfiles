@@ -110,7 +110,25 @@ echo "              - Installing i3 Gaps -"
 echo "--------------------------------------------------"
 echo ""
 
-# TO DO
+apt -y install meson libxcb1-dev libxcb-keysyms1-dev libpango1.0-dev \
+libxcb-util0-dev libxcb-icccm4-dev libyajl-dev \
+libstartup-notification0-dev libxcb-randr0-dev \
+libev-dev libxcb-cursor-dev libxcb-xinerama0-dev \
+libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev \
+autoconf libxcb-xrm0 libxcb-xrm-dev automake libxcb-shape0-dev
+
+git clone https://www.github.com/Airblader/i3 && cd i3
+mkdir -p build && cd build
+meson ..
+ninja
+install ./i3 /bin/i3
+cd ../..
+rm -rf i3
+
+apt -y remove meson libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb1-dev \
+libxcb-icccm4-dev libyajl-dev libev-dev libxcb-xkb-dev libxcb-cursor-dev \
+libxkbcommon-dev libxcb-xinerama0-dev libxkbcommon-x11-dev \
+libstartup-notification0-dev libxcb-randr0-dev libxcb-xrm-dev libxcb-shape0-dev
 
 echo ""
 echo "--------------------------------------------------"
