@@ -85,7 +85,7 @@ apt update && apt -y install brave-browser
 
 # DISCORD
 wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
-gdebi discord.deb
+gdebi -n discord.deb
 rm discord.deb
 
 # VISUAL STUDIO CODE
