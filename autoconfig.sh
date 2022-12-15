@@ -101,6 +101,22 @@ wget https://download3.vmware.com/software/WKST-1700-LX/VMware-Workstation-Full-
 chmod a+x VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle
 ./VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle
 
+
+## Manual procedure to do
+# generate a key
+# openssl req -new -x509 -newkey rsa:2048 -keyout MOK.priv -outform DER -out MOK.der -nodes -days 36500 -subj "/CN=VMware/"
+# import to UEFI database
+# sudo mokutil --import MOK.der     (generate a password need next step)
+# reboot system and import in UEFI BIOS
+# (use same password)
+# sudo shutdown -r now
+# once rebooted need to sign the binaries
+# sudo kmodsign sha256 ./MOK.priv ./MOK.der $(modinfo -n vmmon)
+# sudo kmodsign sha256 ./MOK.priv ./MOK.der $(modinfo -n vmnet)
+# on reboot new signed binaries used
+# sudo shutdown -r now
+# now good to start VMware and use any VM
+
 # MULTIPLE (via APT)
 apt -y install vlc deluge notepadqq
 
@@ -204,6 +220,10 @@ echo '. $HOME/.asdf/asdf.sh' >> ~/.bashrc
 echo '. $HOME/.asdf/completions/asdf.bash' >> ~/.bashrc
 
 source ~/.bashrc
+
+asdf plugin add terraform https://github.com/asdf-community/asdf-hashicorp.git
+asdf plugin add kubectl https://github.com/asdf-community/asdf-kubectl.git
+asdf plugin add helm https://github.com/Antiarchitect/asdf-helm.git
 
 echo ""
 echo "--------------------------------------------------"
