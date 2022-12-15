@@ -205,10 +205,8 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute s
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
 # Sreen brightness controls
-#bindsym XF86MonBrightnessUp exec ~/sc/brightness.sh +7 # increase screen brightness
-#bindsym XF86MonBrightnessDown exec ~/sc/brightness.sh -7 # decrease screen brightness
-bindsym XF86MonBrightnessUp exec light -A 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec light -U 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec ~/sc/brightness.sh +5 # increase screen brightness
+bindsym XF86MonBrightnessDown exec ~/sc/brightness.sh -5 # decrease screen brightness
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause
