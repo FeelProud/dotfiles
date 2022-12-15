@@ -184,7 +184,7 @@ bindsym $mod+r mode "resize"
 
 # Custom code
 ## Wallpaper
-exec --no-startup-id feh --bg-fill ~/Pictures/wallpaper.png 
+exec --no-startup-id feh --bg-fill ~/Pictures/wallpaper.jpg 
 
 ## Scratchpad bindings
 bindsym $mod+Ctrl+Down move scratchpad
