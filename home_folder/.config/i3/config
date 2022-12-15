@@ -197,6 +197,9 @@ bar {
   status_command i3blocks
 }
 
+#########################################################################
+#                          CUSTOM CONFIG                                #
+#########################################################################
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +5% #increase sound volume
@@ -220,6 +223,9 @@ exec --no-startup-id compton &
 # numlock on
 exec --no-startup-id numlockx on
 
+# lockscreen
+bindsym $mod+l exec --no-startup-id ~/scripts/lock.sh
+
 # exec --no-startup-id compton --config ~/.config/compton/compton.conf -b
 # backup screenshots
 exec --no-startup-id mkdir -p ~/screens/
@@ -229,10 +235,7 @@ exec_always --no-startup-id xrdb ~/.Xresources
 # set chrome as default web browser
 exec --no-startup-id xdg-settings set default-web-browser brave.desktop
 
-hide_edge_borders both 
-
-# accept touchpad tapping clic
-# exec --no-startup-id xinput set-prop 16 309 1
+hide_edge_borders both
 
 # screens
 exec --no-startup-id ~/sc/screen.sh none
