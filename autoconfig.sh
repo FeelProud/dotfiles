@@ -81,6 +81,13 @@ curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | tee /etc/apt/sources.list.d/brave-browser-release.list
 apt update && apt -y install brave-browser
 
+# SPOTIFY
+apt -y install curl libcanberra-gtk-module curl software-properties-common apt-transport-https gnupg2 ubuntu-keyring
+curl -sS https://download.spotify.com/debian/pubkey_5E3C45D7B312C643.gpg | gpg --dearmor | tee /usr/share/keyrings/spotify.gpg
+echo "deb [signed-by=/usr/share/keyrings/spotify.gpg] http://repository.spotify.com stable non-free" | tee /etc/apt/sources.list.d/spotify.list
+apt update
+apt -y install spotify-client
+
 # DISCORD
 wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
 gdebi -n discord.deb
