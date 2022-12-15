@@ -58,11 +58,9 @@ apt -y install $target_term
 apt -y install i3 i3blocks
 
 # NULTIPLE DEPEDENCIES
-apt -y install feh compton numlockx volumeicon-alsa maim scrot xclip curl wget light pulseaudio rxvt-unicode ffmpeg ncdu \
+apt -y install feh compton numlockx volumeicon-alsa maim scrot xclip curl wget pulseaudio rxvt-unicode ffmpeg ncdu \
 imagemagick xdotool libncurses5-dev git make xdg-utils pkg-config build-essential gcc-multilib vim pavucontrol lxappearance \
 htop neofetch xinput gsettings-desktop-schemas nemo rsync rofi libnotify-bin playerctl mpv hexchat bat ntfs-3g gem libaio1 gdebi-core
-
-chmod +s /usr/bin/light
 
 # PYTHON(s)
 apt -y install python2 python3 python3-pip
