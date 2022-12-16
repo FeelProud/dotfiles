@@ -231,8 +231,8 @@ snap install vagrant --classic
 # ASDF
 apt install curl git
 git clone https://github.com/asdf-vm/asdf.git /home/${target_user}/.asdf --branch v0.10.2
-echo '. /home/${target_user}/.asdf/asdf.sh' >> ~/.bashrc
-echo '. /home/${target_user}/.asdf/completions/asdf.bash' >> ~/.bashrc
+echo '. /home/${target_user}/.asdf/asdf.sh' >> /home/${target_user}/.bashrc
+echo '. /home/${target_user}/.asdf/completions/asdf.bash' >> /home/${target_user}/.bashrc
 
 source ~/.bashrc
 
