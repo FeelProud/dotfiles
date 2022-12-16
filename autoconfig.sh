@@ -208,8 +208,7 @@ apt -y install hashcat-nvidia
 echo "wireshark-common wireshark-common/install-setuid boolean true" | debconf-set-selections
 apt -y install checksec wireshark gobuster nmap exiftool binwalk foremost audacity ghex
 
-snap install dbeaver
-
+snap install dbeaver-ce
 
 echo ""
 echo "--------------------------------------------------"
