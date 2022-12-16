@@ -107,6 +107,15 @@ chmod a+x VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle
 ./VMware-Workstation-Full-17.0.0-20800274.x86_64.bundle
 
 
+# DOCKER
+apt update
+apt -y install ca-certificates curl gnupg lsb-release
+mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+apt update
+apt -y install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
 ## Manual procedure to do
 # generate a key
 # openssl req -new -x509 -newkey rsa:2048 -keyout MOK.priv -outform DER -out MOK.der -nodes -days 36500 -subj "/CN=VMware/"
