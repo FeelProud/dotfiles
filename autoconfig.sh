@@ -248,6 +248,9 @@ rm -f DroidSansMono.zip
 # install noto font
 apt install fonts-noto-color-emoji
 
+# brightness right
+chmod 666 /sys/class/backlight/nvidia_wmi_ec_backlight/brightness
+
 # move config files
 chmod -R 755 etc/
 chown -R root: etc/
