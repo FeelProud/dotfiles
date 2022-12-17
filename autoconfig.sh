@@ -199,7 +199,7 @@ git clone https://github.com/radare/radare2 /opt/radare2
 chmod 777 -R /opt/radare2/
 old_path=$(pwd)
 cd /opt/radare2/ && ./sys/install.sh
-cd $(pwd)
+cd ${old_path}
 
 # metasploit
 snap install metasploit-framework
