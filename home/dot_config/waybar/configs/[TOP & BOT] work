@@ -1,0 +1,77 @@
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+
+// ### DUAL TOP and BOTTOM ### //
+
+[{
+"include": "~/.config/waybar/modules",
+"layer": "top",
+//"mode": "dock",
+"exclusive": true,
+"passthrough": false,
+"position": "top",
+"spacing": 3,
+"fixed-center": true,
+"ipc": true,
+"margin-top": 1,
+"margin-left": 8,
+"margin-right": 8,
+
+"modules-left": [
+	"hyprland/workspaces",
+	"custom/separator#blank_2",
+	"cpu", 
+	"temperature", 
+	"memory",
+	"disk", 
+	],
+  
+"modules-center": [
+	"clock",
+	"custom/light_dark",
+	"custom/swaync",
+	], 
+
+"modules-right": [
+	"battery", 
+	"custom/separator#blank_2",
+	"tray",
+	"custom/updater",
+	"custom/separator#blank_2",
+	"idle_inhibitor",
+	"custom/lock", 
+	],
+},
+
+{
+"include": "~/.config/waybar/modules",
+"layer": "top",
+//"mode": "dock",
+"exclusive": true,
+"passthrough": false,
+"position": "bottom",
+"spacing": 5,
+"fixed-center": true,
+"ipc": true,
+"height": 0,
+"margin-left": 8,
+"margin-right": 8,
+//"margin-bottom": 0,
+
+"modules-left": [
+	"backlight",
+	"backlight/slider",
+	"custom/separator#blank_2",
+	"pulseaudio",
+	"pulseaudio/slider",
+	 ],
+
+"modules-center": [
+	"network#speed",
+],
+
+"modules-right": [
+	"network",
+	"custom/vpn",
+	],
+
+}]

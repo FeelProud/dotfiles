@@ -1,71 +1,80 @@
-/* .............Purpl..................... */
-/* --- 👍 designed by https://github.com/Krautt  👍 --- */
+/* ---- 💫 https://github.com/JaKooLit 💫 ---- */
+/*  Black & White MonoChrome */
 
 * {
-	font-family: "JetBrains Mono Nerd Font";
-	font-weight: bold;
-	min-height: 0;		
-	/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
-	font-size: 97%;
-	font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+font-family: "JetBrainsMono Nerd Font";
+font-weight: bold;
+min-height: 0;
+/* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
+font-size: 97%;
+font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+padding: 1px;
 }
 
 window#waybar {
-	background: #100214;
-	color: #cba6f7;
+	background: transparent;
 }
 
-window#waybar.hidden {
-	opacity: 0.5;
+window#waybar.empty {
+	background-color: transparent;
 }
 
-window#waybar.empty,
 window#waybar.empty #window {
-	padding: 0px;
-	border: 0px;
 	background-color: transparent;
 }
 
 tooltip {
+	color: white;
 	background: #1e1e2e;
+	opacity: 0.8;
 	border-radius: 10px;
 	border-width: 2px;
 	border-style: solid;
-	border-color: #11111b;
-	color: #cba6f7;
+	border-color: white;
 }
 
+tooltip label{
+	color: #cdd6f4;
+}
 /*-----module groups----*/
 .modules-right {
-	border: 3px solid #20052a;
-	border-radius: 100px 0px 0px 0px;
-	background-color: #3d174b;
+	background-color: black;
+	color: white;
+	border-bottom: 1px;
+	border-style: solid;
+	border-color: white;
+	border-radius: 10px;
 	padding-top: 2px;
 	padding-bottom: 2px;
 	padding-right: 4px;
 	padding-left: 4px;
 }
-
 .modules-center {
+	background-color: black;
+	color: white;
+	border-bottom: 1px;
+	border-style: solid;
+	border-color: white;
+	border-radius: 10px;
 	padding-top: 2px;
 	padding-bottom: 2px;
 	padding-right: 4px;
 	padding-left: 4px;
 }
-
 .modules-left {
-	/*background-color: #1e1e2e;*/
-	border: 3px solid #20052a;
-	border-radius: 0px 0px 100px 0px;
-	background-color: #441a53;
+	background-color: black;
+	color: white;
+	border-bottom: 1px;
+	border-style: solid;
+	border-color: white;
+	border-radius: 10px;
 	padding-top: 2px;
 	padding-bottom: 2px;
 	padding-right: 4px;
 	padding-left: 4px;
 }
-
+/*-----modules indv----*/
 #workspaces button {
-	color: #6E6A86;
     box-shadow: none;
 	text-shadow: none;
     padding: 0px;
@@ -75,33 +84,25 @@ tooltip {
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.5s cubic-bezier(.55,-0.68,.48,1.682);
 }
+#workspaces button:hover {
+	color: white;
+	background-color: rgba(0,153,153,0.2);
+    padding-left: 2px;
+    padding-right: 2px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
 
 #workspaces button.active {
-	color: #cba6f7;
-	border-radius: 50%;
-	background-color: black;
+	color: white;
     padding-left: 8px;
     padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
-#workspaces button.focused {
-	color: #d8dee9;
-}
-
-#workspaces button.urgent {
-	color: #11111b;
+#workspaces button.persistent {
 	border-radius: 10px;
-}
-
-#workspaces button:hover {
-	color: #9CCFD8;
-    border-radius: 15px;
- 	padding-left: 2px;
-    padding-right: 2px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #backlight,
@@ -117,7 +118,6 @@ tooltip {
 #mode,
 #mpris,
 #network,
-#power-profiles-daemon,
 #pulseaudio,
 #pulseaudio-slider,
 #taskbar,
@@ -127,23 +127,15 @@ tooltip {
 #wireplumber,
 #workspaces,
 #custom-backlight,
-#custom-browser,
-#custom-cava_mviz,
 #custom-cycle_wall,
-#custom-file_manager,
 #custom-keybinds,
 #custom-keyboard,
 #custom-light_dark,
 #custom-lock,
-#custom-hint,
-#custom-hypridle,
 #custom-menu,
 #custom-power_vertical,
 #custom-power,
-#custom-settings,
-#custom-spotify,
 #custom-swaync,
-#custom-tty,
 #custom-updater,
 #custom-weather,
 #custom-weather.clearNight,
@@ -156,42 +148,26 @@ tooltip {
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.sunnyDay {
-	color: whitesmoke;
-	padding-top: 4px;
-	padding-bottom: 4px;
+	padding-top: 3px;
+	padding-bottom: 3px;
 	padding-right: 6px;
 	padding-left: 6px;
 }
-
+/*-----Indicators----*/
+#idle_inhibitor.activated {
+	color: #2dcc36;
+}
+#pulseaudio.muted {
+	color: #cc3436;
+}
 #temperature.critical {
-	background-color: #ff0000;
+	color: #cc3436;
 }
 
 @keyframes blink {
 	to {
 		color: #000000;
 	}
-}
-
-/*-----Indicators----*/
-#custom-hypridle.notactive,
-#idle_inhibitor.activated {
-	color: #39FF14;
-}
-
-#taskbar button.active {
-	background-color: purple;
-    padding-left: 12px;
-    padding-right: 12px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
-}
-
-#taskbar button:hover {
-    padding-left: 3px;
-    padding-right: 3px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #battery.critical:not(.charging) {
@@ -201,6 +177,21 @@ tooltip {
 	animation-timing-function: linear;
 	animation-iteration-count: infinite;
 	animation-direction: alternate;
+}
+
+#taskbar button.active {
+	background-color: #7f849c;
+    padding-left: 6px;
+    padding-right: 6px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
+}
+
+#taskbar button:hover {
+    padding-left: 2px;
+    padding-right: 2px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.682);
 }
 
 #pulseaudio-slider slider {
@@ -216,13 +207,11 @@ tooltip {
 	min-width: 80px;
 	min-height: 5px;
 	border-radius: 5px;
-	background-color: #6E6A86;
 }
 
 #pulseaudio-slider highlight {
 	min-height: 10px;
 	border-radius: 5px;
-	background-color: purple;
 }
 
 #backlight-slider slider {
@@ -238,11 +227,9 @@ tooltip {
 	min-width: 80px;
 	min-height: 10px;
 	border-radius: 5px;
-	background-color: #6E6A86;
 }
 
 #backlight-slider highlight {
 	min-width: 10px;
 	border-radius: 5px;
-	background-color: purple;
 }
