@@ -1,3 +1,4 @@
+{{ if eq "test" "test" -}}
 #!/bin/bash
 
 TARGET_DIR="$HOME/.config/waybar/configs/"
@@ -13,4 +14,4 @@ STYLE_SYMLINK="$HOME/.config/waybar/style.css"
 
 rm -f "$STYLE_SYMLINK"
 ln -s "$STYLE_FILE" "$STYLE_SYMLINK"
-
+{{ end -}}
