@@ -1,0 +1,16 @@
+#!/bin/bash
+
+TARGET_DIR="$HOME/.config/waybar/configs/"
+FIRST_FILE=$(find "$TARGET_DIR" -type f | head -n 1)
+SYMLINK_PATH="$HOME/.config/waybar/config"
+
+rm -f "$SYMLINK_PATH"
+ln -s "$FIRST_FILE" "$SYMLINK_PATH"
+
+STYLE_DIR="$HOME/.config/waybar/style"
+STYLE_FILE=$(find "$STYLE_DIR" -type f | head -n 1)
+STYLE_SYMLINK="$HOME/.config/waybar/style.css"
+
+rm -f "$STYLE_SYMLINK"
+ln -s "$STYLE_FILE" "$STYLE_SYMLINK"
+
