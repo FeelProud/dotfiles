@@ -101,7 +101,7 @@ execute_script "hyprland.sh"
 
 execute_script "ags.sh"
 
-execute_script "nvidia.sh"
+# execute_script "nvidia.sh"
 
 execute_script "bluetooth.sh"
 
