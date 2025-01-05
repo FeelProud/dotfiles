@@ -14,7 +14,6 @@ RESET=$(tput sgr0)
 
 sudo pacman -Sy --noconfirm archlinux-keyring 2>&1
 sudo pacman -Sy --noconfirm base-devel 2>&1
-sudo pacman-mirrors --fasttrack 2>&1
 
 if [ ! "$(command -v paru)" ]; then
   if [ ! "$(command -v git)" ]; then
