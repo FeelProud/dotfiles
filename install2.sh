@@ -29,7 +29,7 @@ fi
 if [ ! "$(command -v chezmoi)" ]; then
   bin_dir="$HOME/.local/bin"
   chezmoi="$bin_dir/chezmoi"
-  sh -c "$(curl -fsSL https://git.io/chezmoi)" -- -b "$bin_dir"
+  paru -Syu --noconfirm chezmoi 2>&1
 else
   chezmoi=chezmoi
 fi
