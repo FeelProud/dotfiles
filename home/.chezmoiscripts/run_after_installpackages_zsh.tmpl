@@ -1,0 +1,23 @@
+zsh=(
+	eza
+	zsh
+	zsh-completions
+	fzf
+)
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Change the working directory to the parent directory of the script
+PARENT_DIR="$SCRIPT_DIR/.."
+cd "$PARENT_DIR" || exit 1
+
+source "$(dirname "$(readlink -f "$0")")/global_functions.sh"
+
+# Installing zsh packages
+printf "${NOTE} Installing core zsh packages...${RESET}\n"
+for ZSH in "${zsh[@]}"; do
+  install_package "$ZSH" 2>&1
+  if [ $? -ne 0 ]; then
+     echo -e "\e[1A\e[K${ERROR} - $ZSH Package installation failed, Please check the installation logs"
+  fi
+done
