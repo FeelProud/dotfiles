@@ -26,6 +26,9 @@ if [ ! "$(command -v paru)" ]; then
   paru -Syu --noconfirm 2>&1 || { printf "%s - Failed to update system\n" "${ERROR}"; exit 1; }
 fi
 
+paru -Syu --noconfirm archlinux-keyring 2>&1
+paru -Syu --noconfirm base-devel 2>&1
+  
 if [ ! "$(command -v chezmoi)" ]; then
   paru -Syu --noconfirm chezmoi 2>&1
   chezmoi="/usr/bin/chezmoi"
