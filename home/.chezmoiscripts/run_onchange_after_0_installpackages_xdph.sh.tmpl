@@ -36,7 +36,7 @@ install_package() {
 # Installing xdg packages
 printf "${NOTE} Installing core xdg packages...${RESET}\n"
 for XDG in "${xdg[@]}"; do
-  install_package "$XDG" 2>&1
+  install_package "$XDG" 2>&1 /dev/null
   if [ $? -ne 0 ]; then
      echo -e "\e[1A\e[K${ERROR} - $XDG Package installation failed, Please check the installation logs"
   fi

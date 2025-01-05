@@ -40,7 +40,7 @@ install_package() {
 # Installing thunar packages
 printf "${NOTE} Installing core thunar packages...${RESET}\n"
 for THUNAR in "${thunar[@]}"; do
-  install_package "$THUNAR" 2>&1
+  install_package "$THUNAR" 2>&1 /dev/null
   if [ $? -ne 0 ]; then
      echo -e "\e[1A\e[K${ERROR} - $THUNAR Package installation failed, Please check the installation logs"
   fi

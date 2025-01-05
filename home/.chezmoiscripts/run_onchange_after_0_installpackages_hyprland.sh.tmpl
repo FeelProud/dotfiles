@@ -39,19 +39,40 @@ install_package() {
   fi
 }
 
+uninstall_package() {
+  local pkg="$1"
+
+  # Checking if package is installed
+  if pacman -Qi "$pkg" &>> /dev/null ; then
+    # Package is installed
+    echo -e "${NOTE} Uninstalling $pkg ..."
+    sudo pacman -R --noconfirm "$pkg" 2>&1 | tee -a "$LOG" | grep -v "error: target not found"
+    # Check if the package was uninstalled
+    if ! pacman -Qi "$pkg" &>> /dev/null ; then
+      echo -e "\e[1A\e[K${OK} $pkg was uninstalled."
+    else
+      echo -e "\e[1A\e[K${ERROR} $pkg failed to uninstall. Please check the log."
+      return 1 
+    fi
+  else
+    echo -e "${NOTE} $pkg is not installed, skipping uninstallation."
+  fi
+  return 0 
+}
+
 # Removing other Hyprland to avoid conflict
 printf "${YELLOW} Checking for other hyprland packages and remove if any..${RESET}\n"
 if [ "$(command -v Hyprland)" ]; then
   printf "${YELLOW} Hyprland detected. uninstalling to install Hyprland-git...${RESET}\n"
   for hyprnvi in hyprland-git hyprland-nvidia hyprland-nvidia-git hyprland-nvidia-hidpi-git; do
-    sudo pacman -R --noconfirm "$hyprnvi" 2>/dev/null
+    uninstall_package "$hyprnvi" 2>/dev/null
   done
 fi
 
 # Installing hyprland packages
 printf "${NOTE} Installing core hyprland packages...${RESET}\n"
 for HYPR in "${hypr[@]}"; do
-  install_package "$HYPR" 2>&1
+  install_package "$HYPR" 2>&1 /dev/null
   if [ $? -ne 0 ]; then
      echo -e "\e[1A\e[K${ERROR} - $HYPR Package installation failed, Please check the installation logs"
   fi

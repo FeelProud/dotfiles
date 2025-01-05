@@ -38,7 +38,7 @@ install_package() {
 # Installing zsh packages
 printf "${NOTE} Installing core zsh packages...${RESET}\n"
 for ZSH in "${zsh[@]}"; do
-  install_package "$ZSH" 2>&1
+  install_package "$ZSH" 2>&1 /dev/null
   if [ $? -ne 0 ]; then
      echo -e "\e[1A\e[K${ERROR} - $ZSH Package installation failed, Please check the installation logs"
   fi
