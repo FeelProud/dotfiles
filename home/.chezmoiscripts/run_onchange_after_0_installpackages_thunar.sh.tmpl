@@ -9,11 +9,13 @@ ORANGE=$(tput setaf 166)
 YELLOW=$(tput setaf 3)
 RESET=$(tput sgr0)
 
-zsh=(
-	eza
-	zsh
-	zsh-completions
-	fzf
+thunar=(
+  thunar 
+  thunar-volman 
+  tumbler
+  ffmpegthumbnailer
+  file-roller 
+  thunar-archive-plugin
 )
 
 install_package() {
@@ -35,11 +37,18 @@ install_package() {
   fi
 }
 
-# Installing zsh packages
-printf "${NOTE} Installing core zsh packages...${RESET}\n"
-for ZSH in "${zsh[@]}"; do
-  install_package "$ZSH" 2>&1
+# Installing thunar packages
+printf "${NOTE} Installing core thunar packages...${RESET}\n"
+for THUNAR in "${thunar[@]}"; do
+  install_package "$THUNAR" 2>&1
   if [ $? -ne 0 ]; then
-     echo -e "\e[1A\e[K${ERROR} - $ZSH Package installation failed, Please check the installation logs"
+     echo -e "\e[1A\e[K${ERROR} - $THUNAR Package installation failed, Please check the installation logs"
   fi
 done
+
+printf "${NOTE} Setting Thunar as default file manager...\n"
+
+xdg-mime default thunar.desktop inode/directory
+xdg-mime default thunar.desktop application/x-wayland-gnome-saved-search
+
+echo "${OK} Thunar has been set as the default file manager." 2>&1
