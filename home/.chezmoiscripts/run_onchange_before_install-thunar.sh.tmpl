@@ -45,10 +45,3 @@ for THUNAR in "${thunar[@]}"; do
      echo -e "\e[1A\e[K${ERROR} - $THUNAR Package installation failed, Please check the installation logs"
   fi
 done
-
-printf "${NOTE} Setting Thunar as default file manager...\n"
-
-xdg-mime default thunar.desktop inode/directory
-xdg-mime default thunar.desktop application/x-wayland-gnome-saved-search
-
-echo "${OK} Thunar has been set as the default file manager." 2>&1
