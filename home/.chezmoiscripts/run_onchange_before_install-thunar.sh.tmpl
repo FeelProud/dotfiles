@@ -25,7 +25,7 @@ install_package() {
   else
     # Package not installed
     echo -e "${NOTE} Installing $1 ..."
-    paru -S --noconfirm "$1" 2>&1 /dev/null
+    paru -S --noconfirm "$1"
     # Making sure package is installed
     if paru -Q "$1" &>> /dev/null ; then
       echo -e "\e[1A\e[K${OK} $1 was installed."

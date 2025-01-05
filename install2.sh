@@ -14,6 +14,7 @@ RESET=$(tput sgr0)
 
 sudo pacman -Sy --noconfirm archlinux-keyring 2>&1
 sudo pacman -Sy --noconfirm base-devel 2>&1
+sudo pacman-mirrors --fasttrack 2>&1
 
 if [ ! "$(command -v paru)" ]; then
   if [ ! "$(command -v git)" ]; then
@@ -31,10 +32,7 @@ fi
   
 if [ ! "$(command -v chezmoi)" ]; then
   paru -Syu --noconfirm chezmoi 2>&1
-  chezmoi="/usr/bin/chezmoi"
-else
-  chezmoi=chezmoi
 fi
 
 script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
-exec "$chezmoi" init --apply "--source=$script_dir"
+exec "chezmoi" init --apply "--source=$script_dir"
