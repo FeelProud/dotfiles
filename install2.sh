@@ -28,4 +28,10 @@ fi
 
 if [ ! "$(command -v chezmoi)" ]; then
   paru -Syu --noconfirm chezmoi 2>&1
+  chezmoi="/usr/bin/chezmoi"
+else
+  chezmoi=chezmoi
 fi
+
+script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
+echo $script_dir
