@@ -12,15 +12,15 @@ ORANGE=$(tput setaf 166)
 YELLOW=$(tput setaf 3)
 RESET=$(tput sgr0)
 
-pacman -Sy --noconfirm archlinux-keyring 2>&1
-pacman -Sy --noconfirm base-devel 2>&1
+sudo pacman -Sy --noconfirm archlinux-keyring 2>&1
+sudo pacman -Sy --noconfirm base-devel 2>&1
 
 if [ ! "$(command -v paru)" ]; then
   if [ ! "$(command -v git)" ]; then
-    pacman -Sy --noconfirm git 2>&1 || { printf "%s - Failed to install git using AUR\n" "${ERROR}"; exit 1; }
+    sudo pacman -Sy --noconfirm git 2>&1 || { printf "%s - Failed to install git using AUR\n" "${ERROR}"; exit 1; }
   fi
   if [ ! "$(command -v curl)" ]; then
-    pacman -Sy --noconfirm curl 2>&1 || { printf "%s - Failed to install git using AUR\n" "${ERROR}"; exit 1; }
+    sudo pacman -Sy --noconfirm curl 2>&1 || { printf "%s - Failed to install git using AUR\n" "${ERROR}"; exit 1; }
   fi
 
   git clone https://aur.archlinux.org/paru.git || { printf "%s - Failed to clone paru from AUR\n" "${ERROR}"; exit 1; }
