@@ -1,5 +1,14 @@
 #!/bin/bash
 
+OK="$(tput setaf 2)[OK]$(tput sgr0)"
+ERROR="$(tput setaf 1)[ERROR]$(tput sgr0)"
+NOTE="$(tput setaf 3)[NOTE]$(tput sgr0)"
+WARN="$(tput setaf 5)[WARN]$(tput sgr0)"
+CAT="$(tput setaf 6)[ACTION]$(tput sgr0)"
+ORANGE=$(tput setaf 166)
+YELLOW=$(tput setaf 3)
+RESET=$(tput sgr0)
+
 zsh=(
 	eza
 	zsh
@@ -25,10 +34,6 @@ install_package() {
     fi
   fi
 }
-
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-source "$SCRIPT_DIR/.globalscripts/global_functions.sh"
 
 # Installing zsh packages
 printf "${NOTE} Installing core zsh packages...${RESET}\n"
