@@ -12,6 +12,9 @@ ORANGE=$(tput setaf 166)
 YELLOW=$(tput setaf 3)
 RESET=$(tput sgr0)
 
+pacman -Sy --noconfirm archlinux-keyring 2>&1
+pacman -Sy --noconfirm base-devel 2>&1
+
 if [ ! "$(command -v paru)" ]; then
   if [ ! "$(command -v git)" ]; then
     pacman -Sy --noconfirm git 2>&1 || { printf "%s - Failed to install git using AUR\n" "${ERROR}"; exit 1; }
@@ -25,9 +28,6 @@ if [ ! "$(command -v paru)" ]; then
   makepkg -si --noconfirm 2>&1 || { printf "%s - Failed to install paru from AUR\n" "${ERROR}"; exit 1; }
   paru -Syu --noconfirm 2>&1 || { printf "%s - Failed to update system\n" "${ERROR}"; exit 1; }
 fi
-
-paru -Syu --noconfirm archlinux-keyring 2>&1
-paru -Syu --noconfirm base-devel 2>&1
   
 if [ ! "$(command -v chezmoi)" ]; then
   paru -Syu --noconfirm chezmoi 2>&1
