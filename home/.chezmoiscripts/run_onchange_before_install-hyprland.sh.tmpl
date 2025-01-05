@@ -39,25 +39,23 @@ install_package() {
   fi
 }
 
-uninstall_package() {
-  local pkg="$1"
-
-  # Checking if package is installed
-  if pacman -Qi "$pkg" &>> /dev/null ; then
-    # Package is installed
-    echo -e "${NOTE} Uninstalling $pkg ..."
-    sudo pacman -R --noconfirm "$pkg" 2>&1 | tee -a "$LOG" | grep -v "error: target not found"
-    # Check if the package was uninstalled
-    if ! pacman -Qi "$pkg" &>> /dev/null ; then
-      echo -e "\e[1A\e[K${OK} $pkg was uninstalled."
-    else
-      echo -e "\e[1A\e[K${ERROR} $pkg failed to uninstall. Please check the log."
-      return 1 
-    fi
+install_package() {
+  # Checking if package is already installed
+  if paru -Q "$1" &>> /dev/null ; then
+    echo -e "${OK} $1 is already installed. Skipping..."
   else
-    echo -e "${NOTE} $pkg is not installed, skipping uninstallation."
+    # Package not installed
+    echo -e "${NOTE} Installing $1 ..."
+    paru -S --noconfirm "$1" 2>&1 /dev/null
+    # Making sure package is installed
+    if paru -Q "$1" &>> /dev/null ; then
+      echo -e "\e[1A\e[K${OK} $1 was installed."
+    else
+      # Something is missing, exiting to review log
+      echo -e "\e[1A\e[K${ERROR} $1 failed to install :( , please check the install.log. You may need to install manually! Sorry I have tried :("
+      exit 1
+    fi
   fi
-  return 0 
 }
 
 # Removing other Hyprland to avoid conflict

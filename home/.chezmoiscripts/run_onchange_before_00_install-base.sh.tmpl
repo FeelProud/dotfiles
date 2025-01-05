@@ -21,7 +21,7 @@ install_package() {
   else
     # Package not installed
     echo -e "${NOTE} Installing $1 ..."
-    paru -S --noconfirm "$1" 2>&1
+    paru -S --noconfirm "$1" 2>&1 /dev/null
     # Making sure package is installed
     if paru -Q "$1" &>> /dev/null ; then
       echo -e "\e[1A\e[K${OK} $1 was installed."
@@ -32,6 +32,7 @@ install_package() {
     fi
   fi
 }
+
 # Installation of main components
 printf "\n%s - Installing base-devel \n" "${NOTE}"
 for BASE in "${base[@]}"; do
