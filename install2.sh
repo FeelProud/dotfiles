@@ -13,10 +13,10 @@ YELLOW=$(tput setaf 3)
 RESET=$(tput sgr0)
 
 if [ ! "$(command -v paru)" ]; then
-  if [ "$(command -v git)" ]; then
+  if [ ! "$(command -v git)" ]; then
     pacman -Sy --noconfirm git 2>&1 || { printf "%s - Failed to install git using AUR\n" "${ERROR}"; exit 1; }
   fi
-  if [ "$(command -v curl)" ]; then
+  if [ ! "$(command -v curl)" ]; then
     pacman -Sy --noconfirm curl 2>&1 || { printf "%s - Failed to install git using AUR\n" "${ERROR}"; exit 1; }
   fi
 
