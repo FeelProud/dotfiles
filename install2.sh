@@ -27,9 +27,5 @@ if [ ! "$(command -v paru)" ]; then
 fi
 
 if [ ! "$(command -v chezmoi)" ]; then
-  bin_dir="$HOME/.local/bin"
-  chezmoi="$bin_dir/chezmoi"
   paru -Syu --noconfirm chezmoi 2>&1
-else
-  chezmoi=chezmoi
 fi
