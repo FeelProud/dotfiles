@@ -34,4 +34,4 @@ else
 fi
 
 script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
-echo $script_dir
+exec "$chezmoi" init --apply "--source=$script_dir"
