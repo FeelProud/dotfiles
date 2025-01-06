@@ -34,4 +34,11 @@ if [ ! "$(command -v chezmoi)" ]; then
 fi
 
 script_dir="$(cd -P -- "$(dirname -- "$(command -v -- "$0")")" && pwd -P)"
+
+chezmoi_path="$(command -v chezmoi)"
+if [ -z "$chezmoi_path" ]; then
+    printf "%s - chezmoi command not found after installation\n" "${ERROR}"
+    exit 1
+fi
+
 exec "chezmoi" init --apply "--source=$script_dir"
