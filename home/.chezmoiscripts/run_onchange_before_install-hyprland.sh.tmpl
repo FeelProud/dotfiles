@@ -46,7 +46,7 @@ uninstall_package() {
   if pacman -Qi "$pkg" &>> /dev/null ; then
     # Package is installed
     echo -e "${NOTE} Uninstalling $pkg ..."
-    sudo pacman -R --noconfirm "$pkg" 2>&1 | tee -a "$LOG" | grep -v "error: target not found"
+    sudo pacman -R --noconfirm "$pkg" 2>&1 | grep -v "error: target not found"
     # Check if the package was uninstalled
     if ! pacman -Qi "$pkg" &>> /dev/null ; then
       echo -e "\e[1A\e[K${OK} $pkg was uninstalled."

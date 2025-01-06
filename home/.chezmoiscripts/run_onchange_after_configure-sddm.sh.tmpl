@@ -12,7 +12,7 @@ RESET=$(tput sgr0)
 for login_manager in lightdm gdm lxdm lxdm-gtk3; do
   if pacman -Qs "$login_manager" > /dev/null; then
     echo "disabling $login_manager..."
-    sudo systemctl disable "$login_manager.service" 2>&1 | tee -a "$LOG"
+    sudo systemctl disable "$login_manager.service" 2>&1
   fi
 done
 
@@ -22,9 +22,9 @@ sudo systemctl enable sddm
 # Set up SDDM
 echo -e "${NOTE} Setting up the login screen."
 sddm_conf_dir=/etc/sddm.conf.d
-[ ! -d "$sddm_conf_dir" ] && { printf "$CAT - $sddm_conf_dir not found, creating...\n"; sudo mkdir "$sddm_conf_dir" 2>&1 | tee -a "$LOG"; }
+[ ! -d "$sddm_conf_dir" ] && { printf "$CAT - $sddm_conf_dir not found, creating...\n"; sudo mkdir "$sddm_conf_dir" 2>&1; }
 
 wayland_sessions_dir=/usr/share/wayland-sessions
-[ ! -d "$wayland_sessions_dir" ] && { printf "$CAT - $wayland_sessions_dir not found, creating...\n"; sudo mkdir "$wayland_sessions_dir" 2>&1 | tee -a "$LOG"; }
+[ ! -d "$wayland_sessions_dir" ] && { printf "$CAT - $wayland_sessions_dir not found, creating...\n"; sudo mkdir "$wayland_sessions_dir" 2>&1; }
 
 printf "\n%.0s" {1..2}
