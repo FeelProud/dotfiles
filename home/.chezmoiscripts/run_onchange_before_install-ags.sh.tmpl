@@ -67,11 +67,6 @@ if [ -d "ags" ]; then
     rm -rf "ags"
 fi
 
-echo $PWD
-echo $PWD
-echo $PWD
-sleep 1m
-
 # Clone nwg-look repository with the specified tag
 if git clone --recursive -b "$ags_tag" --depth 1 https://github.com/Aylur/ags.git; then
     cd ags || exit 1
