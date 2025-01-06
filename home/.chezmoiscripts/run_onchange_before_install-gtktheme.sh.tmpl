@@ -35,7 +35,7 @@ install_package() {
 
 # installing engine needed for gtk themes
 for PKG1 in "${engine[@]}"; do
-    install_package "$PKG1" 2>&1 | tee -a "$LOG"
+    install_package "$PKG1" 2>&1
     if [ $? -ne 0 ]; then
         echo -e "\033[1A\033[K${ERROR} - $PKG1 Package installation failed, Please check the installation logs"
         exit 1
