@@ -67,6 +67,8 @@ if [ -d "ags" ]; then
     rm -rf "ags"
 fi
 
+cd /tmp
+
 # Clone nwg-look repository with the specified tag
 if git clone --recursive -b "$ags_tag" --depth 1 https://github.com/Aylur/ags.git; then
     cd ags || exit 1
@@ -78,13 +80,8 @@ if git clone --recursive -b "$ags_tag" --depth 1 https://github.com/Aylur/ags.gi
     else
         echo -e "${ERROR} Installation failed for ags" 2>&1
     fi
-
-    # Move logs to Install-Logs directory
-    mv "$MLOG" ../Install-Logs/ || true
-    cd ..
 else
     echo -e "${ERROR} Failed to download ags Please check your connection" 2>&1
-    mv "$MLOG" ../Install-Logs/ || true
     exit 1
 fi
 
