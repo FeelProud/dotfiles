@@ -12,13 +12,14 @@ declare -A online_music=(
   ["Radio - Lofi Girl 🎧🎶"]="https://play.streamafrica.net/lofiradio"
   ["Radio - Chillhop 🎧🎶"]="http://stream.zeno.fm/fyn8eh3h5f8uv"
   ["FM - Easy Rock 96.3 📻🎶"]="https://radio-stations-philippines.com/easy-rock"
+  ["FM - Easy Rock - Baguio 91.9 📻🎶"]="https://radio-stations-philippines.com/easy-rock-baguio" 
   ["FM - Love Radio 90.7 📻🎶"]="https://radio-stations-philippines.com/love"
   ["FM - WRock - CEBU 96.3 📻🎶"]="https://onlineradio.ph/126-96-3-wrock.html"
   ["FM - Fresh Philippines 📻🎶"]="https://onlineradio.ph/553-fresh-fm.html"
   ["YT - Wish 107.5 YT Pinoy HipHop 📻🎶"]="https://youtube.com/playlist?list=PLkrzfEDjeYJnmgMYwCKid4XIFqUKBVWEs&si=vahW_noh4UDJ5d37"
-  ["YT - Top Youtube Music 2023 📹🎶"]="https://youtube.com/playlist?list=PLDIoUOhQQPlXr63I_vwF9GD8sAKh77dWU&si=y7qNeEVFNgA-XxKy"
+  ["YT - Youtube Top 100 Songs Global 📹🎶"]="https://youtube.com/playlist?list=PL4fGSI1pDJn6puJdseH2Rt9sMvt9E2M4i&si=5jsyfqcoUXBCSLeu"
   ["YT - Wish 107.5 YT Wishclusives 📹🎶"]="https://youtube.com/playlist?list=PLkrzfEDjeYJn5B22H9HOWP3Kxxs-DkPSM&si=d_Ld2OKhGvpH48WO"
-  ["YT - Relaxing Music 📹🎶"]="https://youtube.com/playlist?list=PLMIbmfP_9vb8BCxRoraJpoo4q1yMFg4CE"
+  ["YT - Relaxing Piano Music 🎹🎶"]="https://youtu.be/6H7hXzjFoVU?si=nZTPREC9lnK1JJUG"
   ["YT - Youtube Remix 📹🎶"]="https://youtube.com/playlist?list=PLeqTkIUlrZXlSNn3tcXAa-zbo95j0iN-0"
   ["YT - Korean Drama OST 📹🎶"]="https://youtube.com/playlist?list=PLUge_o9AIFp4HuA-A3e3ZqENh63LuRRlQ"
   ["YT - AfroBeatz 2024 📹🎶"]="https://www.youtube.com/watch?v=7uB-Eh9XVZQ"
@@ -37,7 +38,7 @@ populate_local_music() {
 
 # Function for displaying notifications
 notification() {
-  notify-send -u normal -i "$iDIR/music.png" "Playing: $@"
+  notify-send -u normal -i "$iDIR/music.png" " Now Playing:" " $@"
 }
 
 # Main function for playing local music
@@ -45,7 +46,7 @@ play_local_music() {
   populate_local_music
 
   # Prompt the user to select a song
-  choice=$(printf "%s\n" "${filenames[@]}" | rofi -i -dmenu -config ~/.config/rofi/config-rofi-Beats.rasi -p "Local Music")
+  choice=$(printf "%s\n" "${filenames[@]}" | rofi -i -dmenu -config ~/.config/rofi/config-rofi-Beats.rasi)
 
   if [ -z "$choice" ]; then
     exit 1
@@ -67,7 +68,7 @@ play_local_music() {
 
 # Main function for shuffling local music
 shuffle_local_music() {
-  notification "Shuffle local music"
+  notification "Shuffle Play local music"
 
   # Play music in $mDIR on shuffle
   mpv --shuffle --loop-playlist --vid=no "$mDIR"
@@ -75,7 +76,7 @@ shuffle_local_music() {
 
 # Main function for playing online music
 play_online_music() {
-  choice=$(printf "%s\n" "${!online_music[@]}" | rofi -i -dmenu -config ~/.config/rofi/config-rofi-Beats.rasi -p "Online Music")
+  choice=$(printf "%s\n" "${!online_music[@]}" | rofi -i -dmenu -config ~/.config/rofi/config-rofi-Beats.rasi)
 
   if [ -z "$choice" ]; then
     exit 1
@@ -92,8 +93,14 @@ play_online_music() {
 # Check if an online music process is running and send a notification, otherwise run the main function
 pkill mpv && notify-send -u low -i "$iDIR/music.png" "Music stopped" || {
 
+# Check if rofi is already running
+if pidof rofi > /dev/null; then
+  pkill rofi
+fi
+
+
 # Prompt the user to choose between local and online music
-user_choice=$(printf "Play from Online Stations\nPlay from Music Folder\nShuffle Play from Music Folder" | rofi -dmenu -config ~/.config/rofi/config-rofi-Beats-menu.rasi -p "Select music source")
+user_choice=$(printf "Play from Online Stations\nPlay from Music Folder\nShuffle Play from Music Folder" | rofi -dmenu -config ~/.config/rofi/config-rofi-Beats-menu.rasi)
 
   case "$user_choice" in
     "Play from Music Folder")

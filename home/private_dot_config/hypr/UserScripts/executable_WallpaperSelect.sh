@@ -2,8 +2,14 @@
 # This script for selecting wallpapers (SUPER W)
 
 # WALLPAPERS PATH
+terminal=kitty
 wallDIR="$HOME/Pictures/wallpapers"
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
+wallpaper_current="$HOME/.config/hypr/wallpaper_effects/.wallpaper_current"
+
+# Directory for swaync
+iDIR="$HOME/.config/swaync/images"
+iDIRi="$HOME/.config/swaync/icons"
 
 # variables
 focused_monitor=$(hyprctl monitors | awk '/^Monitor/{name=$2} /focused: yes/{print name}')
@@ -20,7 +26,7 @@ if pidof swaybg > /dev/null; then
 fi
 
 # Retrieve image files using null delimiter to handle spaces in filenames
-mapfile -d '' PICS < <(find "${wallDIR}" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \) -print0)
+mapfile -d '' PICS < <(find "${wallDIR}" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.pnm" -o -iname "*.tga" -o -iname "*.tiff" -o -iname "*.webp" -o -iname "*.bmp" -o -iname "*.farbfeld" -o -iname "*.png" -o -iname "*.gif" \) -print0)
 
 RANDOM_PIC="${PICS[$((RANDOM % ${#PICS[@]}))]}"
 RANDOM_PIC_NAME=". random"
@@ -91,19 +97,48 @@ main() {
     echo "Image not found."
     exit 1
   fi
+
 }
 
 # Check if rofi is already running
 if pidof rofi > /dev/null; then
   pkill rofi
-  sleep 1  # Allow some time for rofi to close
 fi
 
 main
 
-sleep 1.5
-"$SCRIPTSDIR/WallustSwww.sh"
+wait $!
+"$SCRIPTSDIR/WallustSwww.sh" &&
 
-sleep 0.5
+wait $!
+sleep 2
 "$SCRIPTSDIR/Refresh.sh"
+
+sleep 1
+# Check if user selected a wallpaper
+if [[ -n "$choice" ]]; then
+    sddm_sequoia="/usr/share/sddm/themes/sequoia_2"
+    if [ -d "$sddm_sequoia" ]; then
+        notify-send -i "$iDIR/ja.png" "Set wallpaper" "as SDDM background?" \
+            -t 10000 \
+            -A "yes=Yes" \
+            -A "no=No" \
+            -h string:x-canonical-private-synchronous:wallpaper-notify
+
+        # Wait for user input using dbus-monitor
+        dbus-monitor "interface='org.freedesktop.Notifications',member='ActionInvoked'" |
+        while read -r line; do
+          if echo "$line" | grep -q "yes"; then
+            $terminal -e bash -c "echo 'Enter your password to set wallpaper as SDDM Background'; \
+            sudo cp -r $wallpaper_current '$sddm_sequoia/backgrounds/default' && \
+            notify-send -i '$iDIR/ja.png' 'SDDM' 'Background SET'"
+            break
+          elif echo "$line" | grep -q "no"; then
+            echo "Wallpaper not set as SDDM background. Exiting."
+            break
+          fi
+        done &
+    fi
+fi
+
 
